@@ -624,24 +624,42 @@ export function RevealCard({
   const ref = useRef<HTMLElement | null>(null);
   const [seen, setSeen] = useState(false);
   useEffect(() => {
-    if (
-      (kind === "support" && window.matchMedia("(max-width: 767px)").matches) ||
-      !window.matchMedia("(hover: none)").matches ||
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-    )
-      return;
-    const io = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          setSeen(true);
-          io.disconnect();
-        }
-      },
-      { threshold: 0.65 },
+    const mobile = window.matchMedia("(max-width: 767px)");
+    const touch = window.matchMedia("(hover: none)");
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)");
+    let observer: IntersectionObserver | undefined;
+    const configure = () => {
+      observer?.disconnect();
+      if (
+        (kind !== "career" && mobile.matches) ||
+        !touch.matches ||
+        reduced.matches
+      ) {
+        setSeen(false);
+        return;
+      }
+      observer = new IntersectionObserver(
+        (entries) => {
+          if (entries[0].isIntersecting) {
+            setSeen(true);
+            observer?.disconnect();
+          }
+        },
+        { threshold: 0.65 },
+      );
+      if (ref.current) observer.observe(ref.current);
+    };
+    [mobile, touch, reduced].forEach((query) =>
+      query.addEventListener("change", configure),
     );
-    if (ref.current) io.observe(ref.current);
-    return () => io.disconnect();
-  }, []);
+    configure();
+    return () => {
+      observer?.disconnect();
+      [mobile, touch, reduced].forEach((query) =>
+        query.removeEventListener("change", configure),
+      );
+    };
+  }, [kind]);
   const Tag = kind === "service" ? "a" : "article";
   return (
     <Tag
@@ -682,6 +700,18 @@ export function RevealCard({
             height={iconHeight}
             className={flipped ? "flipped" : ""}
           />
+          {kind === "service" && (
+            <span
+              className={`service-icon-solid${flipped ? " flipped" : ""}`}
+              aria-hidden="true"
+              style={{
+                width: iconWidth,
+                height: iconHeight,
+                maskImage: `url("${icon}")`,
+                WebkitMaskImage: `url("${icon}")`,
+              }}
+            />
+          )}
         </div>
       )}
       {revealedIcon && (

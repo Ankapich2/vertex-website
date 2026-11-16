@@ -126,7 +126,8 @@ html.lenis {
 .mobile-menu .nav-dropdown-panel {
   position: static;
   width: 100%;
-  max-height: 40dvh;
+  max-height: none;
+  overflow: visible;
   margin-block: 8px;
   box-shadow: none;
   background: var(--surface);
@@ -399,7 +400,46 @@ main:focus {
   transform: translate3d(0, 15px, 0);
   backface-visibility: hidden;
 }
+.service-icon-solid {
+  display: none;
+  background: var(--green);
+  mask-size: contain;
+  mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: contain;
+  -webkit-mask-position: center;
+  -webkit-mask-repeat: no-repeat;
+}
 @media (max-width: 767px) {
+  .reveal-card.service {
+    transition: none;
+  }
+  .reveal-card.service:is(
+      :hover,
+      :focus-visible,
+      :focus-within,
+      .touch-revealed
+    ) {
+    color: var(--primary);
+    border-color: transparent;
+  }
+  .reveal-card.service .reveal-photo {
+    display: none;
+  }
+  .reveal-card.service .reveal-icon {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .reveal-card.service .reveal-icon img {
+    display: none;
+  }
+  .reveal-card.service .service-icon-solid {
+    display: block;
+  }
+  .reveal-card.service > .arrow {
+    filter: none;
+  }
   .checkbox {
     align-items: flex-start;
   }
