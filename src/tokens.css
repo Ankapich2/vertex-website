@@ -1,0 +1,82 @@
+@font-face {
+  font-family: Manrope;
+  src: url("/assets/Manrope.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+  font-display: swap;
+}
+:root {
+  --green: #3ab04b;
+  --black: #171717;
+  --white: #fff;
+  --primary: #111;
+  --primary-70: #111111b3;
+  --primary-20: #11111133;
+  --accent-green: #5ec257;
+  --background: #fff;
+  --surface: #f5f5f5;
+  --elevation-1: #fff;
+  --ui-space-4: 4px;
+  --ui-space-6: 6px;
+  --ui-space-8: 8px;
+  --ui-space-12: 12px;
+  --ui-space-16: 16px;
+  --ui-space-20: 20px;
+  --ui-space-24: 24px;
+  --ui-space-32: 32px;
+  --ui-space-48: 48px;
+  --ui-space-64: 64px;
+  --ui-space-96: 96px;
+  --radius-2: 2px;
+  --radius-6: 6px;
+  --ui-radius-8: 8px;
+  --ui-radius-12: 12px;
+  --vx-layout-page-padding: 24px;
+  --vx-space-section: 96px;
+  --vx-space-section-inner: 48px;
+  --vx-space-title-body: 24px;
+  --vx-space-label-gap: 8px;
+  --vx-space-field-gap: 16px;
+  --vx-space-card-padding: 24px;
+  --vx-space-card-gap: 24px;
+  --vx-space-content-action: 32px;
+  --vx-space-inline: 8px;
+  --vx-grid-columns: 12;
+  --vx-grid-gutter: 24px;
+  --vx-header-height: 80px;
+  --vx-h1-size: 56px;
+  --vx-h1-line: 64px;
+  --vx-h2-size: 40px;
+  --vx-h2-line: 48px;
+  --vx-h3-size: 28px;
+  --vx-h3-line: 36px;
+  --vx-body-size: 18px;
+  --vx-body-line: 28px;
+  --vx-ui-size: 16px;
+  --vx-ui-line: 24px;
+  --vx-meta-size: 14px;
+  --vx-meta-line: 20px;
+  --motion-duration: 400ms;
+  --motion-ease: cubic-bezier(0.19, 1, 0.22, 1);
+}
+@media (max-width: 767px) {
+  :root {
+    --vx-layout-page-padding: 24px;
+    --vx-grid-columns: 2;
+    --vx-header-height: 72px;
+    --vx-space-section: 64px;
+    --vx-space-section-inner: 32px;
+    --vx-space-title-body: 16px;
+    --vx-space-card-padding: 20px;
+    --vx-space-card-gap: 16px;
+    --vx-space-content-action: 24px;
+    --vx-h1-size: 32px;
+    --vx-h1-line: 40px;
+    --vx-h2-size: 28px;
+    --vx-h2-line: 36px;
+    --vx-h3-size: 24px;
+    --vx-h3-line: 32px;
+    --vx-body-size: 16px;
+    --vx-body-line: 24px;
+  }
+}
