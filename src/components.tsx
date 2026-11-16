@@ -630,11 +630,7 @@ export function RevealCard({
     let observer: IntersectionObserver | undefined;
     const configure = () => {
       observer?.disconnect();
-      if (
-        (kind !== "career" && mobile.matches) ||
-        !touch.matches ||
-        reduced.matches
-      ) {
+      if (mobile.matches || !touch.matches || reduced.matches) {
         setSeen(false);
         return;
       }
@@ -700,9 +696,9 @@ export function RevealCard({
             height={iconHeight}
             className={flipped ? "flipped" : ""}
           />
-          {kind === "service" && (
+          {(kind === "service" || kind === "support") && (
             <span
-              className={`service-icon-solid${flipped ? " flipped" : ""}`}
+              className={`reveal-icon-solid${flipped ? " flipped" : ""}`}
               aria-hidden="true"
               style={{
                 width: iconWidth,
